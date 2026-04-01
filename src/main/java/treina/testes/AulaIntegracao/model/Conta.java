@@ -23,6 +23,12 @@ public class Conta {
         this.saldo = saldo;
     }
 
+    public Conta(Long id, String titular, BigDecimal saldo) {
+        this.id = id;
+        this.titular = titular;
+        this.saldo = saldo;
+    }
+
     public Long getId() {
         return id;
     }
