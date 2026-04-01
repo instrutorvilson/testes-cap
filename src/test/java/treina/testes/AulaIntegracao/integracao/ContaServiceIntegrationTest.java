@@ -1,4 +1,4 @@
-package treina.testes.AulaIntegracao;
+package treina.testes.AulaIntegracao.integracao;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
