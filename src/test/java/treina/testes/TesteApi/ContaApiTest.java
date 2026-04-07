@@ -8,6 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 
 
+import java.math.BigDecimal;
+
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.Matchers.empty;
@@ -58,22 +60,7 @@ public class ContaApiTest {
 
     @Test
     void deveAtualizarConta() {
-            // cria conta primeiro
-            Integer id =
-                    given()
-                            .contentType("application/json")
-                            .body("""
-                                        {
-                                          "titular": "João",
-                                          "saldo": 1000
-                                        }
-                                    """)
-                            .when()
-                            .post("/v1/contas")
-                            .then()
-                            .extract()
-                            .path("id");
-
+            Long id = criarConta("ze", new BigDecimal("1000.00"));
             // atualiza
             given()
                     .contentType("application/json")
@@ -93,21 +80,7 @@ public class ContaApiTest {
 
     @Test
     void deveExcluirConta() {
-        Integer id =
-                given()
-                        .contentType("application/json")
-                        .body("""
-                {
-                  "titular": "João",
-                  "saldo": 1000
-                }
-            """)
-                        .when()
-                        .post("/v1/contas")
-                        .then()
-                        .extract()
-                        .path("id");
-
+        Long id = criarConta("ze", new BigDecimal("1000.00"));
         given()
                 .when()
                 .delete("/v1/contas/" + id)
@@ -116,28 +89,31 @@ public class ContaApiTest {
     }
     @Test
     void deveBuscarContaPorId() {
-
-        Integer id =
-                given()
-                        .contentType("application/json")
-                        .body("""
-                {
-                  "titular": "João",
-                  "saldo": 1000
-                }
-            """)
-                        .when()
-                        .post("/v1/contas")
-                        .then()
-                        .extract()
-                        .path("id");
-
+        Long id = criarConta("ze", new BigDecimal("1000.00"));
         given()
                 .when()
                 .get("/v1/contas/" + id)
                 .then()
                 .statusCode(200)
-                .body("id", equalTo(id));
+                .body("id", equalTo(id.intValue()));
+    }
+
+    private Long criarConta(String titular, BigDecimal saldo){
+        return given()
+                .contentType("application/json")
+                .body("""
+                            {
+                              "titular": "%s",
+                              "saldo": %s
+                            }
+                        """.formatted(titular, saldo)
+                )
+                .when()
+                .post("/v1/contas")
+                .then()
+                .extract()
+                .jsonPath()
+                .getLong("id");
     }
 
 }
