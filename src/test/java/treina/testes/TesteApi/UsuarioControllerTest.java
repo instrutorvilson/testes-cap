@@ -17,8 +17,11 @@ public class UsuarioControllerTest extends TestesApiBase{
 
     @Test
     void devePermitirAcessoComAuth() {
+        String user = System.getenv().getOrDefault("APP_USER","admin");
+        String password = System.getenv().getOrDefault("APP_PASSWORD","123");
+
         given()
-                .auth().basic("admin","123")
+                .auth().basic(user,password)
                 .when()
                 .get("/v1/usuarios")
                 .then()
@@ -27,6 +30,9 @@ public class UsuarioControllerTest extends TestesApiBase{
 
     @Test
     void deveCriarUsuario() {
+        String user = System.getenv().getOrDefault("APP_USER","admin");
+        String password = System.getenv().getOrDefault("APP_PASSWORD","123");
+
         String json = """
                             {
                                 "nome": "João",
@@ -34,7 +40,7 @@ public class UsuarioControllerTest extends TestesApiBase{
                             }
                        """;
         given()
-                .auth().basic("admin", "123")
+                .auth().basic(user, password)
                 .contentType("application/json")
                 .body(json)
                 .when()
@@ -45,7 +51,7 @@ public class UsuarioControllerTest extends TestesApiBase{
     }
     @Test
     void deveRetornar401AoCriarUsuarioSemAutenticacao() {
-        String json = """
+          String json = """
                             {
                                 "nome": "João",
                                 "email": "joao@email.com"
