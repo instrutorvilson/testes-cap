@@ -1,11 +1,23 @@
 package treina.testes.TesteApi;
 
+import io.github.cdimascio.dotenv.Dotenv;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 public class UsuarioControllerTest extends TestesApiBase{
+    private String user;
+    private String password;
+    @BeforeEach
+    void setup1(){
+        Dotenv dotenv = Dotenv.load();
+
+        user = dotenv.get("APP_USER");
+        password = dotenv.get("APP_PASSWORD");
+    }
+
     @Test
     void deveRetornar401SemAutenticacao() {
         given()
@@ -17,8 +29,8 @@ public class UsuarioControllerTest extends TestesApiBase{
 
     @Test
     void devePermitirAcessoComAuth() {
-        String user = System.getenv().getOrDefault("APP_USER","admin");
-        String password = System.getenv().getOrDefault("APP_PASSWORD","123");
+      //  String user = System.getenv().getOrDefault("APP_USER","admin");
+       // String password = System.getenv().getOrDefault("APP_PASSWORD","123");
 
         given()
                 .auth().basic(user,password)
@@ -30,8 +42,8 @@ public class UsuarioControllerTest extends TestesApiBase{
 
     @Test
     void deveCriarUsuario() {
-        String user = System.getenv().getOrDefault("APP_USER","admin");
-        String password = System.getenv().getOrDefault("APP_PASSWORD","123");
+        //String user = System.getenv().getOrDefault("APP_USER","admin");
+       // String password = System.getenv().getOrDefault("APP_PASSWORD","123");
 
         String json = """
                             {
