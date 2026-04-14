@@ -10,14 +10,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import static org.junit.Assert.assertEquals;
 
-public class CadastroTest {
-    WebDriver driver;
+public class CadastroTest extends BaseTest {
+   /* WebDriver driver;
 
     @Before
     public void setup(){
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-    }
+    }*/
 
     @Test
     public void cadastro(){

@@ -9,14 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import static org.junit.Assert.assertEquals;
 
-public class GoogleTest {
-    WebDriver driver;
-
-    @Before
-    public void setup(){
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-    }
+public class GoogleTest extends BaseTest {
 
     @Test
     public void lerTitleGoogle(){

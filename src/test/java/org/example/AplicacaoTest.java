@@ -12,14 +12,14 @@ import org.openqa.selenium.support.ui.Select;
 
 import static org.junit.Assert.assertEquals;
 
-public class AplicacaoTest {
-    WebDriver driver;
+public class AplicacaoTest extends BaseTest {
+   /* WebDriver driver;
 
     @Before
     public void setup(){
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-    }
+    }*/
 
     @Test
     public void TestarSeletores(){
