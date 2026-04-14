@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>App Teste Selenium</title>
+    <style>
+        body { font-family: Arial; background: #f4f4f4; }
+        .container { width: 400px; margin: auto; background: white; padding: 20px; border-radius: 8px; }
+        input, button, select { width: 100%; margin: 8px 0; padding: 8px; }
+        .destaque { border: 2px solid blue; }
+        #mensagem { color: green; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container" id="mainContainer">
+    <h2 class="titulo">Cadastro</h2>
+
+    <input type="text" id="nome" name="nome" placeholder="Nome" />
+    <input type="email" class="email-field" name="email" placeholder="Email" />
+
+    <select id="tipo">
+        <option value="aluno">Aluno</option>
+        <option value="professor">Professor</option>
+    </select>
+
+    <button id="btnSalvar" onclick="salvar()">Salvar</button>
+    <button class="btn-cancelar" onclick="limpar()">Cancelar</button>
+
+    <a href="#" id="linkAjuda">Ajuda</a>
+
+    <p id="mensagem"></p>
+</div>
+
+<script>
+function salvar() {
+    document.getElementById("mensagem").innerText = "Salvo com sucesso!";
+}
+
+function limpar(){
+    document.getElementById('nome').value = ''
+    document.getElementsByName('email')[0].value = ''
+}
+</script>
+
+</body>
+</html>
