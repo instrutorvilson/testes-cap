@@ -24,15 +24,23 @@
     }
 
     function habilitarBotao() {
-        setTimeout(() => {
+        fetch('viacep.com.br/ws/89107-000/json/')
+        .then(dados => dados.json())
+        .then(response => console.log(respone))
+
+        /*setTimeout(() => {
             document.getElementById("btnFinalizar").style.display = "block";
-        }, 5000); // 5 segundos
+        }, 5000); // 5 segundos*/
     }
 
     function mostrarAlert() {
         setTimeout(() => {
             alert("Cadastro realizado!");
         }, 4000);
+    }
+
+    function irParaCadastro() {
+            window.location.href = "cadastro.html";
     }
 </script>
 
@@ -53,6 +61,6 @@
 <br><br>
 
 <button id="btnAlert" onclick="mostrarAlert()">Mostrar Alert</button>
-
+<button id="btnCadastro" onclick="irParaCadastro()">Ir para Cadastro</button>
 </body>
 </html>

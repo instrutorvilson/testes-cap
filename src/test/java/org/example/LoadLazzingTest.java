@@ -16,10 +16,11 @@ import static org.junit.Assert.assertTrue;
 public class LoadLazzingTest extends BaseTest{
 
     @Test
-    public void testeSemWait() {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    public void testeSemWait() throws InterruptedException {
+       // driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get("http://127.0.0.1:5500/loadlazzing.html");
         driver.findElement(By.id("btnMensagem")).click();
+        Thread.sleep(4000);
         // Vai falhar porque ainda não apareceu
         WebElement msg = driver.findElement(By.id("mensagem"));
         assertTrue(msg.isDisplayed());
