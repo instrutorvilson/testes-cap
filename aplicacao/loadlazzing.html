@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Teste de Esperas</title>
+
+<style>
+    #mensagem {
+        display: none;
+        color: green;
+        font-weight: bold;
+    }
+
+    #btnFinalizar {
+        display: none;
+    }
+</style>
+
+<script>
+    function carregarMensagem() {
+        setTimeout(() => {
+            document.getElementById("mensagem").style.display = "block";
+        }, 3000); // 3 segundos
+    }
+
+    function habilitarBotao() {
+        setTimeout(() => {
+            document.getElementById("btnFinalizar").style.display = "block";
+        }, 5000); // 5 segundos
+    }
+
+    function mostrarAlert() {
+        setTimeout(() => {
+            alert("Cadastro realizado!");
+        }, 4000);
+    }
+</script>
+
+</head>
+
+<body>
+
+<h2>Teste Selenium - Esperas</h2>
+
+<button id="btnMensagem" onclick="carregarMensagem()">Mostrar Mensagem</button>
+<div id="mensagem">Mensagem carregada!</div>
+
+<br><br>
+
+<button id="btnHabilitar" onclick="habilitarBotao()">Habilitar Botão</button>
+<button id="btnFinalizar">Finalizar</button>
+
+<br><br>
+
+<button id="btnAlert" onclick="mostrarAlert()">Mostrar Alert</button>
+
+</body>
+</html>
