@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="nome" placeholder="Nome">
+    <input id="email" placeholder="Email">
+    <button id="btnSalvar" onclick="salvar()">Salvar</button>
+
+    <p id="msg"></p>
+    <a href="usuarios.html">Usuarios</a>
+    <script>
+        function salvar() {
+            fetch("http://localhost:8080/usuarios", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    nome: document.getElementById("nome").value,
+                    email: document.getElementById("email").value
+                })
+            })
+                .then(res => res.text())
+                .then(msg => {
+                    document.getElementById("msg").innerText = msg;
+                });
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btnCarregar" onclick="carregar()">Carregar Usuários</button>
+
+    <div id="loading" style="display:none;">Carregando...</div>
+
+    <table id="tabelaUsuarios" border="1" style="display:none;">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Ação</th>
+            </tr>
+        </thead>
+        <tbody id="corpo"></tbody>
+    </table>
+
+    <script>
+        function carregar() {
+            document.getElementById("loading").style.display = "block";
+
+            fetch("http://localhost:8080/usuarios")
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById("loading").style.display = "none";
+
+                    let corpo = document.getElementById("corpo");
+                    corpo.innerHTML = "";
+
+                    data.forEach(u => {
+                        corpo.innerHTML += `
+                <tr>
+                    <td>${u.nome}</td>
+                    <td>${u.email}</td>
+                    <td><button onclick="detalhe(${u.id})">Ver</button></td>
+                </tr>
+            `;
+                    });
+
+                    document.getElementById("tabelaUsuarios").style.display = "block";
+                });
+        }
+
+        function detalhe(id) {
+            window.location.href = "detalhes.html?id=" + id;
+        }
+    </script>
+
+</body>
+
+</html>
