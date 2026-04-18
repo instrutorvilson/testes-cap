@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        body { font-family: Arial; margin: 50px; }
+        input { display: block; margin: 10px 0; padding: 8px; }
+        button { padding: 10px; }
+        #erro { color: red; }
+    </style>
+</head>
+<body>
+
+<h2>Login</h2>
+
+<label>Usuário</label>
+<input type="text" id="usuario" />
+
+<label>Senha</label>
+<input type="password" id="senha" />
+
+<button id="btnLogin">Entrar</button>
+
+<p id="erro"></p>
+
+<script>
+    document.getElementById("btnLogin").addEventListener("click", function() {
+
+        const user = document.getElementById("usuario").value;
+        const pass = document.getElementById("senha").value;
+
+        if (user === "admin" && pass === "123") {
+            window.location.href = "home.html";
+        } else {
+            document.getElementById("erro").innerText = "Usuário ou senha inválidos!";
+        }
+    });
+</script>
+
+</body>
+</html>
