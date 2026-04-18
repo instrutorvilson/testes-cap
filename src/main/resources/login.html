@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+
+    <style>
+        body {
+            background-color: #fff;
+        }
+
+        .btn {
+            background-color: #ccc; /* baixo contraste */
+            color: #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Login</h1>
+
+<!-- ERRO: label não associado -->
+<label>Usuário</label>
+<input type="text" id="usuario">
+
+<br><br>
+
+<!-- ERRO: sem label -->
+<input type="password" id="senha" placeholder="Senha">
+
+<br><br>
+
+<!-- ERRO: botão sem descrição acessível -->
+<button class="btn" onclick="login()">Entrar</button>
+
+<!-- ERRO: imagem sem alt -->
+<img src="logo.png">
+
+<script>
+    function login() {
+        alert("Login realizado!");
+    }
+</script>
+
+</body>
+</html>
