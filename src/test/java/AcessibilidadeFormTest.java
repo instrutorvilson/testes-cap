@@ -40,6 +40,7 @@ public class AcessibilidadeFormTest {
         writer.write(json);
         writer.close();
 
+        GeradorRelatorioHTML.gerar(results);
         driver.quit();
     }
 }
